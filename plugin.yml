@@ -1,0 +1,7 @@
+name: Balancedmobs
+version: 1.0
+main: me.discordgoat.BM.Main.Main
+api-version: 1.13
+commands: 
+   potato:
+      description: N/A

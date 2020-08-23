@@ -1,10 +1,14 @@
 package me.discordgoat.BM.Main;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Blaze;
@@ -17,6 +21,7 @@ import org.bukkit.entity.Drowned;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Witch;
@@ -24,7 +29,10 @@ import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
@@ -32,15 +40,50 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+
+import me.discordgoat.BM.ScoreBoard.ScoreHelper;
 
 public class Main extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		Bukkit.getPluginManager().registerEvents(this, this);
+
 	}
 
-	@SuppressWarnings("deprecation")
-	@EventHandler
+
+
+	    @EventHandler
+	    public void onPlayerJoin(PlayerJoinEvent event) {
+	        Player player = event.getPlayer();
+	        ScoreHelper helper = ScoreHelper.createScore(player);
+	        helper.setTitle("&aSkyBlock &e");
+	        helper.setSlot(3, "&7&m-------------------");
+	        helper.setSlot(2, "&aCoins:&f " + "1");
+	        helper.setSlot(1, "&7&m-------------------");
+	    }
+	   
+	    @EventHandler
+	    public void onPlayerQuit(PlayerQuitEvent event) {
+	        Player player = event.getPlayer();
+	        if(ScoreHelper.hasScore(player)) {
+	            ScoreHelper.removeScore(player);
+	        }
+	        
+	    }
+
+	
+	
+		
+
+		
+
+
+
 
 	public void onSpawn(CreatureSpawnEvent e) {
 		e.getLocation();

@@ -1,0 +1,42 @@
+{
+  "name": "lethchest",
+  "displayName": "§aReinforced Leather Chestplate",
+  "material": "LEATHER_CHESTPLATE",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "A A",
+        "ABA",
+        "ABA"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "COBBLESTONE"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "protection",
+      "level": 4
+    },
+    {
+      "id": "mending",
+      "level": 1
+    }
+  ]
+}

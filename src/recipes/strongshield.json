@@ -1,0 +1,37 @@
+{
+  "name": "strongshield",
+  "displayName": "§8Resistant Shield",
+  "material": "SHIELD",
+  "unbreakable": true,
+  "hideFlags": 39,
+  "lore": [
+    "",
+    "§4Resistance §3V"
+  ],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "BAB",
+        "BBB",
+        " B "
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "HEART_OF_THE_SEA"
+        },
+        {
+          "symbol": "B",
+          "item": "SHIELD"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 5
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "lethlegs",
+  "displayName": "§aReinforced Leather Leggings",
+  "material": "LEATHER_LEGGINGS",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "AAA",
+        "B B",
+        "B B"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "COBBLESTONE"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "protection",
+      "level": 4
+    },
+    {
+      "id": "mending",
+      "level": 1
+    }
+  ]
+}

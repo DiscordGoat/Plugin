@@ -1,0 +1,45 @@
+{
+  "name": "golemchest",
+  "displayName": "§6Golem Chestplate",
+  "material": "IRON_CHESTPLATE",
+  "unbreakable": true,
+  "hideFlags": 39,
+  "lore": [
+    "",
+    "§4Protection §3V"
+  ],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "A A",
+        "AAA",
+        "AAA"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "IRON_BLOCK"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "protection",
+      "level": 5
+    },
+    {
+      "id": "fire_protection",
+      "level": 5
+    },
+    {
+      "id": "blast_protection",
+      "level": 5
+    },
+    {
+      "id": "projectile_protection",
+      "level": 5
+    }
+  ]
+}

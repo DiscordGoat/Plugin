@@ -1,0 +1,45 @@
+{
+  "name": "golemlegs",
+  "displayName": "§6Golem Leggings",
+  "material": "IRON_LEGGINGS",
+  "unbreakable": true,
+  "hideFlags": 39,
+  "lore": [
+    "",
+    "§4Protection §3V"
+  ],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "AAA",
+        "A A",
+        "A A"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "IRON_BLOCK"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "protection",
+      "level": 5
+    },
+    {
+      "id": "fire_protection",
+      "level": 5
+    },
+    {
+      "id": "blast_protection",
+      "level": 5
+    },
+    {
+      "id": "projectile_protection",
+      "level": 5
+    }
+  ]
+}

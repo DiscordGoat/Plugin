@@ -1,0 +1,23 @@
+{
+  "name": "lethhelm",
+  "displayName": "§aReinforced Leather Helmet",
+  "material": "LEATHER_HELMET",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "protection",
+      "level": 4
+    },
+    {
+      "id": "mending",
+      "level": 1
+    }
+  ]
+}

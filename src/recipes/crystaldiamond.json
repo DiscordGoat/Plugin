@@ -1,0 +1,12 @@
+{
+  "name": "crystaldiamond",
+  "displayName": "§9Crystal Diamond",
+  "material": "DIAMOND",
+  "unbreakable": false,
+  "hideFlags": 5,
+  "lore": [
+    "§9RARE ITEM"
+  ],
+  "recipes": [],
+  "enchantments": []
+}

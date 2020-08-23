@@ -1,0 +1,63 @@
+{
+  "name": "golemboots",
+  "displayName": "§6Golem Boots",
+  "material": "IRON_BOOTS",
+  "unbreakable": true,
+  "hideFlags": 39,
+  "lore": [
+    "",
+    "§4Protection §3V"
+  ],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "   ",
+        "A A",
+        "A A"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "IRON_BLOCK"
+        }
+      ]
+    },
+    {
+      "shaped": true,
+      "shape": [
+        "A A",
+        "A A",
+        "   "
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "IRON_BLOCK"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "protection",
+      "level": 5
+    },
+    {
+      "id": "fire_protection",
+      "level": 5
+    },
+    {
+      "id": "blast_protection",
+      "level": 5
+    },
+    {
+      "id": "projectile_protection",
+      "level": 5
+    },
+    {
+      "id": "feather_falling",
+      "level": 5
+    }
+  ]
+}

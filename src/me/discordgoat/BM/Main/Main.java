@@ -1,341 +1,71 @@
 package me.discordgoat.BM.Main;
 
-import java.util.ArrayList;
-import java.util.Set;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Bat;
-import org.bukkit.entity.Blaze;
-import org.bukkit.entity.Cat;
-import org.bukkit.entity.CaveSpider;
-import org.bukkit.entity.Chicken;
-import org.bukkit.entity.Cow;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Drowned;
-import org.bukkit.entity.Enderman;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.PigZombie;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Spider;
-import org.bukkit.entity.Witch;
-import org.bukkit.entity.WitherSkeleton;
-import org.bukkit.entity.Zombie;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
+import java.util.*;
+import me.discordgoat.BM.items.*;
+import org.bukkit.*;
+import org.bukkit.enchantments.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
+import org.bukkit.event.entity.*;
+import org.bukkit.event.player.*;
+import org.bukkit.inventory.*;
+import org.bukkit.inventory.meta.*;
+import org.bukkit.plugin.java.*;
+import org.bukkit.potion.*;
 
 import me.discordgoat.BM.ScoreBoard.ScoreHelper;
 
 public class Main extends JavaPlugin implements Listener {
+	public static Main instance;
+
+	public static ItemStack strongshield;
+	public static ItemStack golemhat, golemchest, golemlegs, golemboots;
+	public static ItemStack goathelm, goatchest, goatlegs, goatboots;
+	public static ItemStack lethhelm, lethchest, lethlegs, lethboots;
+	public static ItemStack crystaldiamond;
+	public static ItemStack ghoul = new ItemStack(Material.STONE_SWORD);
+
 	@Override
 	public void onEnable() {
 		Bukkit.getPluginManager().registerEvents(this, this);
+		Bukkit.getPluginManager().registerEvents(new RightClick(), this);
+		instance = this;
 
+		strongshield = ItemGenerator.generateItem("strongshield");
+		golemhat = ItemGenerator.generateItem("golemhat");
+		golemchest = ItemGenerator.generateItem("golemchest");
+		golemlegs = ItemGenerator.generateItem("golemlegs");
+		golemboots = ItemGenerator.generateItem("golemboots");
+		goathelm = ItemGenerator.generateItem("goathelm");
+		goatchest = ItemGenerator.generateItem("goatchest");
+		goatlegs = ItemGenerator.generateItem("goatlegs");
+		goatboots = ItemGenerator.generateItem("goatboots");
+		lethhelm = ItemGenerator.generateItem("lethhelm");
+		lethchest = ItemGenerator.generateItem("lethchest");
+		lethlegs = ItemGenerator.generateItem("lethlegs");
+		lethboots = ItemGenerator.generateItem("lethboots");
+		crystaldiamond = ItemGenerator.generateItem("crystaldiamond");
 	}
 
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
+		ScoreHelper helper = ScoreHelper.createScore(player);
+		helper.setTitle(ChatColor.GREEN + "SkyBlock");
+		helper.setSlot(3, ChatColor.GRAY + "" + ChatColor.UNDERLINE + "-------------------");
+		helper.setSlot(2, ChatColor.GREEN + "Coins: " + ChatColor.WHITE + "1");
+		helper.setSlot(3, ChatColor.GRAY + "" + ChatColor.UNDERLINE + "-------------------");
+	}
 
-
-	    @EventHandler
-	    public void onPlayerJoin(PlayerJoinEvent event) {
-	        Player player = event.getPlayer();
-	        ScoreHelper helper = ScoreHelper.createScore(player);
-	        helper.setTitle("&aSkyBlock &e");
-	        helper.setSlot(3, "&7&m-------------------");
-	        helper.setSlot(2, "&aCoins:&f " + "1");
-	        helper.setSlot(1, "&7&m-------------------");
-	    }
-	   
-	    @EventHandler
-	    public void onPlayerQuit(PlayerQuitEvent event) {
-	        Player player = event.getPlayer();
-	        if(ScoreHelper.hasScore(player)) {
-	            ScoreHelper.removeScore(player);
-	        }
-	        
-	    }
-
-	
-	
-		
-
-		
-
-
-
+	@EventHandler
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+		if(ScoreHelper.hasScore(player)) {
+			ScoreHelper.removeScore(player);
+		}
+	}
 
 	public void onSpawn(CreatureSpawnEvent e) {
-		e.getLocation();
-		// op shield
-		ItemStack strongshield = new ItemStack(Material.SHIELD);
-		ItemMeta strongshieldMeta = strongshield.getItemMeta();
-		strongshieldMeta.setDisplayName(ChatColor.DARK_GRAY + "Resistant Shield");
-		strongshieldMeta.setUnbreakable(true);
-		ArrayList<String> lore4 = new ArrayList<>();
-		lore4.add("");
-		lore4.add(ChatColor.DARK_RED + "Resistance " + ChatColor.DARK_AQUA + "V");
-		strongshieldMeta.setLore(lore4);
-		strongshieldMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		strongshieldMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-		strongshieldMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		strongshieldMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-		strongshieldMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-		strongshieldMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		strongshield.setItemMeta(strongshieldMeta);
-		strongshield.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
-		
-		final ShapedRecipe strongshield1 = new ShapedRecipe(new ItemStack(strongshield)).shape("BAB", "BBB", " B ").setIngredient('A', Material.HEART_OF_THE_SEA)
-				.setIngredient('B', Material.SHIELD);
-		Bukkit.addRecipe(strongshield1);
-		//Golem Armor
-		
-		ItemStack golemhat = new ItemStack(Material.IRON_HELMET);
-
-		ItemMeta golemhatMeta = golemhat.getItemMeta();
-
-		golemhatMeta.setDisplayName(ChatColor.GOLD + "Golem Helmet");
-
-		golemhatMeta.setUnbreakable(true);
-		ArrayList<String> lore = new ArrayList<>();
-		lore.add("");
-		lore.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
-		golemhatMeta.setLore(lore);
-		golemhatMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		golemhatMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-		golemhatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		golemhatMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-		golemhatMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-		golemhatMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		golemhat.setItemMeta(golemhatMeta);
-		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
-		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
-		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
-		golemhat.addUnsafeEnchantment(Enchantment.OXYGEN, 5);
-		golemhat.addUnsafeEnchantment(Enchantment.WATER_WORKER, 5);
-
-		final ShapedRecipe golemhat1 = new ShapedRecipe(new ItemStack(golemhat)).shape("   ", "AAA", "A A").setIngredient('A', Material.IRON_BLOCK);
-		Bukkit.addRecipe(golemhat1);
-		
-		ItemStack golemchest = new ItemStack(Material.IRON_CHESTPLATE);
-
-		ItemMeta golemchestMeta = golemchest.getItemMeta();
-
-		golemchestMeta.setDisplayName(ChatColor.GOLD + "Golem Chestplate");
-
-		golemchestMeta.setUnbreakable(true);
-		ArrayList<String> lore2 = new ArrayList<>();
-		lore2.add("");
-		lore2.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
-		golemchestMeta.setLore(lore2);
-		golemchestMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		golemchestMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-		golemchestMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		golemchestMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-		golemchestMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-		golemchestMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		golemchest.setItemMeta(golemchestMeta);
-		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
-		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
-		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
-
-		final ShapedRecipe golemchest1 = new ShapedRecipe(new ItemStack(golemchest)).shape("A A", "AAA", "AAA").setIngredient('A', Material.IRON_BLOCK);
-		Bukkit.addRecipe(golemchest1);
-		
-		ItemStack golemlegs = new ItemStack(Material.IRON_LEGGINGS);
-
-		ItemMeta golemlegsMeta = golemlegs.getItemMeta();
-
-		golemlegsMeta.setDisplayName(ChatColor.GOLD + "Golem Leggings");
-
-		golemlegsMeta.setUnbreakable(true);
-		ArrayList<String> lore3 = new ArrayList<>();
-		lore3.add("");
-		lore3.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
-		golemlegsMeta.setLore(lore3);
-		golemlegsMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		golemlegsMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-		golemlegsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		golemlegsMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-		golemlegsMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-		golemlegsMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		golemlegs.setItemMeta(golemlegsMeta);
-		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
-		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
-		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
-
-		final ShapedRecipe golemlegs1 = new ShapedRecipe(new ItemStack(golemlegs)).shape("AAA", "A A", "A A").setIngredient('A', Material.IRON_BLOCK);
-		Bukkit.addRecipe(golemlegs1);
-		
-		ItemStack golemboots = new ItemStack(Material.IRON_BOOTS);
-
-		ItemMeta golembootsMeta = golemboots.getItemMeta();
-
-		golembootsMeta.setDisplayName(ChatColor.GOLD + "Golem Boots");
-
-		golembootsMeta.setUnbreakable(true);
-		ArrayList<String> lore5 = new ArrayList<>();
-		lore5.add("");
-		lore5.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
-		golembootsMeta.setLore(lore5);
-		golembootsMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-		golembootsMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-		golembootsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		golembootsMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-		golembootsMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-		golembootsMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		golemboots.setItemMeta(golemlegsMeta);
-		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
-		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
-		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
-		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 5);
-
-		final ShapedRecipe golemboots1 = new ShapedRecipe(new ItemStack(golemboots)).shape("   ", "A A", "A A").setIngredient('A', Material.IRON_BLOCK);
-		Bukkit.addRecipe(golemboots1);
-		
-		ItemStack goathelm = new ItemStack(Material.GOLDEN_HELMET);
-		ItemStack goatchest = new ItemStack(Material.IRON_CHESTPLATE);
-		ItemStack goatlegs = new ItemStack(Material.LEATHER_LEGGINGS);
-		ItemStack goatboots = new ItemStack(Material.GOLDEN_BOOTS);
-		ItemMeta goathelmMeta = goathelm.getItemMeta();
-		ItemMeta goatchestMeta = goatchest.getItemMeta();
-		ItemMeta goatlegsMeta = goatlegs.getItemMeta();
-		ItemMeta goatbootsMeta = goatboots.getItemMeta();
-		goathelmMeta.setDisplayName(ChatColor.GOLD + "Goat Helmet");
-		goathelm.setItemMeta(goathelmMeta);
-		goathelm.addEnchantment(Enchantment.DURABILITY, 3);
-		goathelm.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		goathelm.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe goathelm1 = new ShapedRecipe(new ItemStack(goathelm)).shape("AAA", "B B", "   ")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.MUTTON);
-		Bukkit.addRecipe(goathelm1);
-		goatchestMeta.setDisplayName(ChatColor.GOLD + "Goat Chestplate");
-		goatchest.setItemMeta(goatchestMeta);
-		goatchest.addEnchantment(Enchantment.DURABILITY, 3);
-		goatchest.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		goatchest.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe goatchest1 = new ShapedRecipe(new ItemStack(goatchest)).shape("A A", "BBB", "BAB")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.MUTTON);
-		Bukkit.addRecipe(goatchest1);
-		goatlegsMeta.setDisplayName(ChatColor.GOLD + "Goat Leggings");
-		goatchest.setItemMeta(goatlegsMeta);
-		goatlegs.addEnchantment(Enchantment.DURABILITY, 3);
-		goatlegs.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		goatlegs.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe goatlegs1 = new ShapedRecipe(new ItemStack(goatlegs)).shape("AAA", "B B", "B B")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.MUTTON);
-		Bukkit.addRecipe(goatlegs1);
-		goatbootsMeta.setDisplayName(ChatColor.GOLD + "Goat Boots");
-		goatboots.setItemMeta(goatbootsMeta);
-		goatboots.addEnchantment(Enchantment.DURABILITY, 3);
-		goatboots.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		goatboots.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe goatboots1 = new ShapedRecipe(new ItemStack(goatboots)).shape("   ", "B B", "A A")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.MUTTON);
-		Bukkit.addRecipe(goatboots1);
-		new ItemStack(Material.LEATHER_HELMET);
-		new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-		new ItemStack(Material.LEATHER_LEGGINGS);
-		new ItemStack(Material.CHAINMAIL_BOOTS);
-		ItemStack ghoul = new ItemStack(Material.STONE_SWORD);
-
-		ItemStack lethhelm = new ItemStack(Material.LEATHER_HELMET);
-		ItemMeta lethhelmMeta = lethhelm.getItemMeta();
-		lethhelmMeta.setDisplayName(ChatColor.GREEN + "Reinforced Leather Helmet");
-		lethhelm.setItemMeta(lethhelmMeta);
-		lethhelm.addEnchantment(Enchantment.DURABILITY, 3);
-		lethhelm.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		lethhelm.addEnchantment(Enchantment.MENDING, 1);
-
-		ItemStack lethchest = new ItemStack(Material.LEATHER_CHESTPLATE);
-		ItemMeta lethchestMeta = lethchest.getItemMeta();
-		lethchestMeta.setDisplayName(ChatColor.GREEN + "Reinforced Leather Chestplate");
-		lethchest.setItemMeta(lethchestMeta);
-		lethchest.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		lethchest.addEnchantment(Enchantment.DURABILITY, 3);
-		lethchest.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe lethchest1 = new ShapedRecipe(new ItemStack(lethchest)).shape("A A", "ABA", "ABA")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.COBBLESTONE);
-
-		Bukkit.addRecipe(lethchest1);
-
-		ItemStack lethlegs = new ItemStack(Material.LEATHER_LEGGINGS);
-		ItemMeta lethlegsMeta = lethlegs.getItemMeta();
-		lethlegsMeta.setDisplayName(ChatColor.GREEN + "Reinforced Leather Leggings");
-		lethlegs.setItemMeta(lethlegsMeta);
-		lethlegs.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		lethlegs.addEnchantment(Enchantment.DURABILITY, 3);
-		lethlegs.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe lethlegs1 = new ShapedRecipe(new ItemStack(lethlegs)).shape("AAA", "B B", "B B")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.COBBLESTONE);
-
-		Bukkit.addRecipe(lethlegs1);
-
-		ItemStack lethboots = new ItemStack(Material.LEATHER_BOOTS);
-		ItemMeta lethbootsMeta = lethboots.getItemMeta();
-		lethbootsMeta.setDisplayName(ChatColor.GREEN + "Reinforced Leather Boots");
-		lethboots.setItemMeta(lethbootsMeta);
-		lethboots.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		lethboots.addEnchantment(Enchantment.DURABILITY, 3);
-		lethboots.addEnchantment(Enchantment.MENDING, 1);
-		final ShapedRecipe lethboots1 = new ShapedRecipe(new ItemStack(lethboots)).shape("   ", "A A", "B B")
-				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.COBBLESTONE);
-		Bukkit.addRecipe(lethboots1);
-		
-		ItemStack crystaldiamond = new ItemStack(Material.DIAMOND);
-		ItemMeta crystaldiamondMeta = crystaldiamond.getItemMeta();
-		crystaldiamondMeta.setDisplayName(ChatColor.BLUE + "Crystal Diamond");
-		ArrayList<String> Y = new ArrayList<>();
-		lore.add(ChatColor.BLUE + "RARE ITEM");
-		crystaldiamondMeta.setLore(Y);
-		crystaldiamond.addUnsafeEnchantment(Enchantment.MENDING, 1);
-		crystaldiamondMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		crystaldiamondMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		crystaldiamondMeta.setUnbreakable(true);
-		crystaldiamond.setItemMeta(crystaldiamondMeta);
-		ItemStack crystaldiamondhelm = new ItemStack(Material.DIAMOND_HELMET);
-		ItemMeta crystaldiamondhelmMeta = crystaldiamondhelm.getItemMeta();
-		crystaldiamondhelmMeta.setDisplayName(ChatColor.DARK_PURPLE + "Crystal Diamond Helmet");
-		ArrayList<String> lorey = new ArrayList<>();
-		lorey.add("EPIC ARMOR");
-
-		crystaldiamondhelmMeta.setLore(lorey);
-		crystaldiamondhelm.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
-		crystaldiamondhelmMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		crystaldiamondhelmMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-		crystaldiamondhelmMeta.setUnbreakable(true);
-		crystaldiamondhelm.setItemMeta(crystaldiamondhelmMeta);
-		ShapedRecipe crystaldiamondhelm1 = new ShapedRecipe(crystaldiamondhelm);
-		crystaldiamondhelm1.shape("ABA", "A A", "   ");
-		crystaldiamondhelm1.setIngredient('A', crystaldiamond.getData());
-		crystaldiamondhelm1.setIngredient('B', Material.IRON_INGOT);
-
-
-		
 		if (e.getEntity() instanceof Zombie) {
 			LivingEntity zombie = e.getEntity();
 			zombie.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 9999999, 1));
@@ -432,9 +162,9 @@ public class Main extends JavaPlugin implements Listener {
 
 		// Set lore
 		ArrayList<String> lore1 = new ArrayList<>();
-		lore.add(ChatColor.GRAY + "Damage: " + ChatColor.RED + "+100");
-		lore.add(ChatColor.GRAY + "Strength: " + ChatColor.RED + "+125");
-		lore.add("Unbreakable");
+		lore1.add(ChatColor.GRAY + "Damage: " + ChatColor.RED + "+100");
+		lore1.add(ChatColor.GRAY + "Strength: " + ChatColor.RED + "+125");
+		lore1.add("Unbreakable");
 		heavyswordMeta.setLore(lore1);
 		heavysword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 		heavyswordMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
@@ -454,7 +184,7 @@ public class Main extends JavaPlugin implements Listener {
 			burnedskele.getEquipment().setHelmetDropChance(0);
 			burnedskele.getEquipment().setChestplate(burnedskelechest);
 			burnedskele.getEquipment().setChestplateDropChance(0);
-			burnedskele.getEquipment().setItemInMainHand(ghoul);
+			//burnedskele.getEquipment().setItemInMainHand(ghoul);
 			burnedskele.getEquipment().setItemInHandDropChance(1);
 
 			burnedskele.setCustomName(ChatColor.RED + "[lvl] 2 Wither Skeleton");

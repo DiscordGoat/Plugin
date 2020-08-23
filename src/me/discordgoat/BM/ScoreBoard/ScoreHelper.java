@@ -1,16 +1,9 @@
 package me.discordgoat.BM.ScoreBoard;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
+import java.util.*;
+import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.scoreboard.*;
 
 /**
  *
@@ -18,13 +11,12 @@ import org.bukkit.scoreboard.Team;
  *
  */
 public class ScoreHelper {
-
     private static HashMap<UUID, ScoreHelper> players = new HashMap<>();
-   
+
     public static boolean hasScore(Player player) {
         return players.containsKey(player.getUniqueId());
     }
-   
+
     public static ScoreHelper createScore(Player player) {
         return new ScoreHelper(player);
     }
@@ -41,7 +33,7 @@ public class ScoreHelper {
     private Objective sidebar;
 
     private ScoreHelper(Player player) {
-        scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
         sidebar = scoreboard.registerNewObjective("sidebar", "dummy");
         sidebar.setDisplaySlot(DisplaySlot.SIDEBAR);
         // Create Teams
@@ -60,6 +52,8 @@ public class ScoreHelper {
 
     public void setSlot(int slot, String text) {
         Team team = scoreboard.getTeam("SLOT_" + slot);
+        if (team == null)
+            return;
         String entry = genEntry(slot);
         if(!scoreboard.getEntries().contains(entry)) {
             sidebar.getScore(entry).setScore(slot);

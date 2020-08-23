@@ -1,0 +1,42 @@
+{
+  "name": "goatchest",
+  "displayName": "§6Goat Chestplate",
+  "material": "IRON_CHESTPLATE",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "A A",
+        "BBB",
+        "BBB"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "MUTTON"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "protection",
+      "level": 4
+    },
+    {
+      "id": "mending",
+      "level": 1
+    }
+  ]
+}

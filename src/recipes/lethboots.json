@@ -1,0 +1,60 @@
+{
+  "name": "lethboots",
+  "displayName": "§aReinforced Leather Boots",
+  "material": "LEATHER_BOOTS",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "   ",
+        "A A",
+        "B B"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "COBBLESTONE"
+        }
+      ]
+    },
+    {
+      "shaped": true,
+      "shape": [
+        "A A",
+        "B B",
+        "   "
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "COBBLESTONE"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "protection",
+      "level": 4
+    },
+    {
+      "id": "mending",
+      "level": 1
+    }
+  ]
+}

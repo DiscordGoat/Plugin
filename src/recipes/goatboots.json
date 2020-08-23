@@ -1,0 +1,60 @@
+{
+  "name": "goatboots",
+  "displayName": "§6Goat Boots",
+  "material": "GOLDEN_BOOTS",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [
+    {
+      "shaped": true,
+      "shape": [
+        "   ",
+        "B B",
+        "A A"
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "MUTTON"
+        }
+      ]
+    },
+    {
+      "shaped": true,
+      "shape": [
+        "B B",
+        "A A",
+        "   "
+      ],
+      "ingredientMap": [
+        {
+          "symbol": "A",
+          "item": "LEATHER"
+        },
+        {
+          "symbol": "B",
+          "item": "MUTTON"
+        }
+      ]
+    }
+  ],
+  "enchantments": [
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "protection",
+      "level": 4
+    },
+    {
+      "id": "mending",
+      "level": 1
+    }
+  ]
+}

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Blaze;
@@ -45,23 +43,136 @@ public class Main extends JavaPlugin implements Listener {
 	@EventHandler
 
 	public void onSpawn(CreatureSpawnEvent e) {
-		@SuppressWarnings("unused")
-
-		Location loc = e.getLocation();
+		e.getLocation();
+		// op shield
+		ItemStack strongshield = new ItemStack(Material.SHIELD);
+		ItemMeta strongshieldMeta = strongshield.getItemMeta();
+		strongshieldMeta.setDisplayName(ChatColor.DARK_GRAY + "Resistant Shield");
+		strongshieldMeta.setUnbreakable(true);
+		ArrayList<String> lore4 = new ArrayList<>();
+		lore4.add("");
+		lore4.add(ChatColor.DARK_RED + "Resistance " + ChatColor.DARK_AQUA + "V");
+		strongshieldMeta.setLore(lore4);
+		strongshieldMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		strongshieldMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		strongshieldMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		strongshieldMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		strongshieldMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		strongshieldMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		strongshield.setItemMeta(strongshieldMeta);
+		strongshield.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
+		
+		final ShapedRecipe strongshield1 = new ShapedRecipe(new ItemStack(strongshield)).shape("BAB", "BBB", " B ").setIngredient('A', Material.HEART_OF_THE_SEA)
+				.setIngredient('B', Material.SHIELD);
+		Bukkit.addRecipe(strongshield1);
 		//Golem Armor
+		
 		ItemStack golemhat = new ItemStack(Material.IRON_HELMET);
 
 		ItemMeta golemhatMeta = golemhat.getItemMeta();
 
 		golemhatMeta.setDisplayName(ChatColor.GOLD + "Golem Helmet");
+
+		golemhatMeta.setUnbreakable(true);
+		ArrayList<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
+		golemhatMeta.setLore(lore);
+		golemhatMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		golemhatMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		golemhatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		golemhatMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		golemhatMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		golemhatMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		golemhat.setItemMeta(golemhatMeta);
-		golemhat.addEnchantment(Enchantment.MENDING, 1);
-		golemhat.addEnchantment(Enchantment.DURABILITY, 3);
-		golemhat.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-		final ShapedRecipe golemhat1 = new ShapedRecipe(new ItemStack(golemhat)).shape("AAA", "A A", "   ").setIngredient('A', Material.IRON_BLOCK);
+		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
+		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
+		golemhat.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
+		golemhat.addUnsafeEnchantment(Enchantment.OXYGEN, 5);
+		golemhat.addUnsafeEnchantment(Enchantment.WATER_WORKER, 5);
+
+		final ShapedRecipe golemhat1 = new ShapedRecipe(new ItemStack(golemhat)).shape("   ", "AAA", "A A").setIngredient('A', Material.IRON_BLOCK);
 		Bukkit.addRecipe(golemhat1);
 		
+		ItemStack golemchest = new ItemStack(Material.IRON_CHESTPLATE);
+
+		ItemMeta golemchestMeta = golemchest.getItemMeta();
+
+		golemchestMeta.setDisplayName(ChatColor.GOLD + "Golem Chestplate");
+
+		golemchestMeta.setUnbreakable(true);
+		ArrayList<String> lore2 = new ArrayList<>();
+		lore2.add("");
+		lore2.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
+		golemchestMeta.setLore(lore2);
+		golemchestMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		golemchestMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		golemchestMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		golemchestMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		golemchestMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		golemchestMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		golemchest.setItemMeta(golemchestMeta);
+		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
+		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
+		golemchest.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
+
+		final ShapedRecipe golemchest1 = new ShapedRecipe(new ItemStack(golemchest)).shape("A A", "AAA", "AAA").setIngredient('A', Material.IRON_BLOCK);
+		Bukkit.addRecipe(golemchest1);
 		
+		ItemStack golemlegs = new ItemStack(Material.IRON_LEGGINGS);
+
+		ItemMeta golemlegsMeta = golemlegs.getItemMeta();
+
+		golemlegsMeta.setDisplayName(ChatColor.GOLD + "Golem Leggings");
+
+		golemlegsMeta.setUnbreakable(true);
+		ArrayList<String> lore3 = new ArrayList<>();
+		lore3.add("");
+		lore3.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
+		golemlegsMeta.setLore(lore3);
+		golemlegsMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		golemlegsMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		golemlegsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		golemlegsMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		golemlegsMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		golemlegsMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		golemlegs.setItemMeta(golemlegsMeta);
+		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
+		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
+		golemlegs.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
+
+		final ShapedRecipe golemlegs1 = new ShapedRecipe(new ItemStack(golemlegs)).shape("AAA", "A A", "A A").setIngredient('A', Material.IRON_BLOCK);
+		Bukkit.addRecipe(golemlegs1);
+		
+		ItemStack golemboots = new ItemStack(Material.IRON_BOOTS);
+
+		ItemMeta golembootsMeta = golemboots.getItemMeta();
+
+		golembootsMeta.setDisplayName(ChatColor.GOLD + "Golem Boots");
+
+		golembootsMeta.setUnbreakable(true);
+		ArrayList<String> lore5 = new ArrayList<>();
+		lore5.add("");
+		lore5.add(ChatColor.DARK_RED + "Protection " + ChatColor.DARK_AQUA + "V");
+		golembootsMeta.setLore(lore5);
+		golembootsMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		golembootsMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		golembootsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		golembootsMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		golembootsMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		golembootsMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		golemboots.setItemMeta(golemlegsMeta);
+		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 5);
+		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 5);
+		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 5);
+		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 5);
+		golemboots.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 5);
+
+		final ShapedRecipe golemboots1 = new ShapedRecipe(new ItemStack(golemboots)).shape("   ", "A A", "A A").setIngredient('A', Material.IRON_BLOCK);
+		Bukkit.addRecipe(golemboots1);
 		
 		ItemStack goathelm = new ItemStack(Material.GOLDEN_HELMET);
 		ItemStack goatchest = new ItemStack(Material.IRON_CHESTPLATE);
@@ -103,10 +214,10 @@ public class Main extends JavaPlugin implements Listener {
 		final ShapedRecipe goatboots1 = new ShapedRecipe(new ItemStack(goatboots)).shape("   ", "B B", "A A")
 				.setIngredient('A', Material.LEATHER).setIngredient('B', Material.MUTTON);
 		Bukkit.addRecipe(goatboots1);
-		ItemStack nondeadhelm = new ItemStack(Material.LEATHER_HELMET);
-		ItemStack nondeadchestpiece = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-		ItemStack nondeadlegs = new ItemStack(Material.LEATHER_LEGGINGS);
-		ItemStack nondeadshoe = new ItemStack(Material.CHAINMAIL_BOOTS);
+		new ItemStack(Material.LEATHER_HELMET);
+		new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+		new ItemStack(Material.LEATHER_LEGGINGS);
+		new ItemStack(Material.CHAINMAIL_BOOTS);
 		ItemStack ghoul = new ItemStack(Material.STONE_SWORD);
 
 		ItemStack lethhelm = new ItemStack(Material.LEATHER_HELMET);
@@ -155,9 +266,9 @@ public class Main extends JavaPlugin implements Listener {
 		ItemStack crystaldiamond = new ItemStack(Material.DIAMOND);
 		ItemMeta crystaldiamondMeta = crystaldiamond.getItemMeta();
 		crystaldiamondMeta.setDisplayName(ChatColor.BLUE + "Crystal Diamond");
-		ArrayList<String> lore = new ArrayList<>();
+		ArrayList<String> Y = new ArrayList<>();
 		lore.add(ChatColor.BLUE + "RARE ITEM");
-		crystaldiamondMeta.setLore(lore);
+		crystaldiamondMeta.setLore(Y);
 		crystaldiamond.addUnsafeEnchantment(Enchantment.MENDING, 1);
 		crystaldiamondMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		crystaldiamondMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -184,19 +295,8 @@ public class Main extends JavaPlugin implements Listener {
 		
 		if (e.getEntity() instanceof Zombie) {
 			LivingEntity zombie = e.getEntity();
-			zombie.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 1));
-			zombie.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
-			zombie.getCanPickupItems();
-			zombie.getEquipment().setBoots(nondeadshoe);
-			zombie.getEquipment().setBootsDropChance(0);
-			zombie.getEquipment().setLeggings(nondeadlegs);
-			zombie.getEquipment().setLeggingsDropChance(0);
-			zombie.getEquipment().setHelmet(nondeadhelm);
-			zombie.getEquipment().setHelmetDropChance(0);
-			zombie.getEquipment().setChestplate(nondeadchestpiece);
-			zombie.getEquipment().setChestplateDropChance(0);
-			zombie.getEquipment().setItemInHand(crystaldiamond);
-			zombie.getEquipment().setItemInHandDropChance(1);
+			zombie.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 9999999, 1));
+			zombie.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 1));
 			zombie.setCustomName(ChatColor.RED + "[lvl] 1 Zombie");
 			zombie.setCustomNameVisible(true);
 
@@ -205,30 +305,18 @@ public class Main extends JavaPlugin implements Listener {
 		ItemStack nondeadchestpieceiron = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemStack nondeadlegsiron = new ItemStack(Material.LEATHER_LEGGINGS);
 		ItemStack nondeadshoes = new ItemStack(Material.CHAINMAIL_BOOTS);
-		ItemStack littybow = new ItemStack(Material.BOW);
+		new ItemStack(Material.BOW);
 		if (e.getEntity() instanceof Skeleton) {
 			LivingEntity skelet = e.getEntity();
-			skelet.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 1));
-			skelet.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
-			littybow.addEnchantment(Enchantment.ARROW_DAMAGE, 2);
-			skelet.getCanPickupItems();
-			skelet.getEquipment().setBoots(nondeadshoes);
-			skelet.getEquipment().setBootsDropChance(0);
-			skelet.getEquipment().setLeggings(nondeadlegsiron);
-			skelet.getEquipment().setLeggingsDropChance(0);
-			skelet.getEquipment().setHelmet(nondeadhelmiron);
-			skelet.getEquipment().setHelmetDropChance(0);
-			skelet.getEquipment().setChestplate(nondeadchestpieceiron);
-			skelet.getEquipment().setChestplateDropChance(0);
-			skelet.getEquipment().setItemInHand(littybow);
-			skelet.setCustomName(ChatColor.RED + "[lvl] 3 Skeleton");
+
+			skelet.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 9999999, 2));
+			skelet.setCustomName(ChatColor.RED + "[lvl] 1 Skeleton");
 			skelet.setCustomNameVisible(true);
 		}
 		if (e.getEntity() instanceof Creeper) {
 			LivingEntity creeper = e.getEntity();
 			creeper.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 999999, 0));
 			creeper.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 1));
-			creeper.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 1));
 			creeper.getCanPickupItems();
 			creeper.getEquipment().setBoots(nondeadshoes);
 			creeper.getEquipment().setBootsDropChance(0);
@@ -238,14 +326,14 @@ public class Main extends JavaPlugin implements Listener {
 			creeper.getEquipment().setHelmetDropChance(0);
 			creeper.getEquipment().setChestplate(nondeadchestpieceiron);
 			creeper.getEquipment().setChestplateDropChance(0);
-			creeper.setCustomName(ChatColor.RED + "[lvl] 7 Creeper");
+			creeper.setCustomName(ChatColor.RED + "[lvl] 1 Creeper");
 			creeper.setCustomNameVisible(true);
 		}
+
+
 		if (e.getEntity() instanceof Spider) {
 			LivingEntity arachnid = e.getEntity();
-			arachnid.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 1));
-			arachnid.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 0));
-			arachnid.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 3));
+			arachnid.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 999999, 0));
 			arachnid.getCanPickupItems();
 			arachnid.getEquipment().setBoots(nondeadshoes);
 			arachnid.getEquipment().setBootsDropChance(0);
@@ -255,13 +343,12 @@ public class Main extends JavaPlugin implements Listener {
 			arachnid.getEquipment().setHelmetDropChance(0);
 			arachnid.getEquipment().setChestplate(nondeadchestpieceiron);
 			arachnid.getEquipment().setChestplateDropChance(0);
-			arachnid.setCustomName(ChatColor.RED + "[lvl] 2 Spider");
+			arachnid.setCustomName(ChatColor.RED + "[lvl] 1 Spider");
 			arachnid.setCustomNameVisible(true);
 
 		}
 		if (e.getEntity() instanceof Witch) {
 			LivingEntity alchemist = e.getEntity();
-			alchemist.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
 			alchemist.getCanPickupItems();
 			alchemist.getEquipment().setBoots(nondeadshoes);
 			alchemist.getEquipment().setBootsDropChance(0);
@@ -271,41 +358,23 @@ public class Main extends JavaPlugin implements Listener {
 			alchemist.getEquipment().setHelmetDropChance(0);
 			alchemist.getEquipment().setChestplate(nondeadchestpieceiron);
 			alchemist.getEquipment().setChestplateDropChance(0);
-			alchemist.setCustomName(ChatColor.RED + "[lvl] 11 Witch");
+			alchemist.setCustomName(ChatColor.RED + "[lvl] 1 Witch");
 			alchemist.setCustomNameVisible(true);
 
 		}
 		if (e.getEntity() instanceof Blaze) {
 			LivingEntity firedemon = e.getEntity();
-			firedemon.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
 			firedemon.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 9999999, 2));
-			firedemon.getCanPickupItems();
-			firedemon.getEquipment().setBoots(nondeadshoes);
-			firedemon.getEquipment().setBootsDropChance(0);
-			firedemon.getEquipment().setLeggings(nondeadlegsiron);
-			firedemon.getEquipment().setLeggingsDropChance(0);
-			firedemon.getEquipment().setHelmet(nondeadhelmiron);
-			firedemon.getEquipment().setHelmetDropChance(0);
-			firedemon.getEquipment().setChestplate(nondeadchestpieceiron);
-			firedemon.getEquipment().setChestplateDropChance(0);
-			firedemon.setCustomName(ChatColor.RED + "[lvl] 21 Blaze");
+
+			firedemon.setCustomName(ChatColor.RED + "[lvl] 1 Blaze");
 			firedemon.setCustomNameVisible(true);
 
 		}
 		if (e.getEntity() instanceof CaveSpider) {
 			LivingEntity fangedarachnid = e.getEntity();
-			fangedarachnid.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
 			fangedarachnid.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 9999999, 2));
-			fangedarachnid.getCanPickupItems();
-			fangedarachnid.getEquipment().setBoots(nondeadshoes);
-			fangedarachnid.getEquipment().setBootsDropChance(0);
-			fangedarachnid.getEquipment().setLeggings(nondeadlegsiron);
-			fangedarachnid.getEquipment().setLeggingsDropChance(0);
-			fangedarachnid.getEquipment().setHelmet(nondeadhelmiron);
-			fangedarachnid.getEquipment().setHelmetDropChance(0);
-			fangedarachnid.getEquipment().setChestplate(nondeadchestpieceiron);
-			fangedarachnid.getEquipment().setChestplateDropChance(0);
-			fangedarachnid.setCustomName(ChatColor.RED + "[lvl] 14 Cave Spider");
+
+			fangedarachnid.setCustomName(ChatColor.RED + "[lvl] 1 Cave Spider");
 			fangedarachnid.setCustomNameVisible(true);
 
 		}
@@ -345,14 +414,14 @@ public class Main extends JavaPlugin implements Listener {
 			burnedskele.getEquipment().setItemInMainHand(ghoul);
 			burnedskele.getEquipment().setItemInHandDropChance(1);
 
-			burnedskele.setCustomName(ChatColor.RED + "[lvl] 54 Wither Skeleton");
+			burnedskele.setCustomName(ChatColor.RED + "[lvl] 2 Wither Skeleton");
 			burnedskele.setCustomNameVisible(true);
 
 		}
-		ItemStack oinkzombhat = new ItemStack(Material.LEATHER_HELMET);
-		ItemStack oinkzombshirt = new ItemStack(Material.GOLDEN_CHESTPLATE);
-		ItemStack oinkzombpants = new ItemStack(Material.CHAINMAIL_LEGGINGS);
-		ItemStack oinkzombslippers = new ItemStack(Material.GOLDEN_BOOTS);
+		new ItemStack(Material.LEATHER_HELMET);
+		new ItemStack(Material.GOLDEN_CHESTPLATE);
+		new ItemStack(Material.CHAINMAIL_LEGGINGS);
+		new ItemStack(Material.GOLDEN_BOOTS);
 		ItemStack shinysword = new ItemStack(Material.GOLDEN_SWORD);
 
 		ItemMeta shinyswordMeta = heavysword.getItemMeta();
@@ -363,27 +432,18 @@ public class Main extends JavaPlugin implements Listener {
 		shinysword.addEnchantment(Enchantment.SWEEPING_EDGE, 3);
 		if (e.getEntity() instanceof PigZombie) {
 			LivingEntity pigzomb = e.getEntity();
-			pigzomb.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
+
 			pigzomb.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9999999, 1));
 			pigzomb.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 9999999, 2));
-			pigzomb.getCanPickupItems();
-			pigzomb.getEquipment().setBoots(oinkzombslippers);
-			pigzomb.getEquipment().setBootsDropChance(0);
-			pigzomb.getEquipment().setLeggings(oinkzombpants);
-			pigzomb.getEquipment().setLeggingsDropChance(0);
-			pigzomb.getEquipment().setHelmet(oinkzombhat);
-			pigzomb.getEquipment().setHelmetDropChance(0);
-			pigzomb.getEquipment().setChestplate(oinkzombshirt);
-			pigzomb.getEquipment().setChestplateDropChance(0);
-			pigzomb.getEquipment().setItemInMainHand(shinysword);
-			pigzomb.setCustomName(ChatColor.RED + "[lvl] 34 Zombie Pigman");
+
+			pigzomb.setCustomName(ChatColor.RED + "[lvl] 1 Zombie Pigman");
 			pigzomb.setCustomNameVisible(true);
 
 		}
 		if (e.getEntity() instanceof Enderman) {
 			LivingEntity tpslender = e.getEntity();
 			tpslender.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 9999999, 2));
-			tpslender.setCustomName(ChatColor.RED + "[lvl] 74 Enderman");
+			tpslender.setCustomName(ChatColor.RED + "[lvl] 2 Enderman");
 			tpslender.setCustomNameVisible(true);
 		}
 		if (e.getEntity() instanceof Bat) {
@@ -414,7 +474,7 @@ public class Main extends JavaPlugin implements Listener {
 		if (e.getEntity() instanceof Drowned) {
 			LivingEntity merm = e.getEntity();
 			merm.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 99999, 0));
-			merm.setCustomName(ChatColor.RED + "[lvl] 15 Drowned");
+			merm.setCustomName(ChatColor.RED + "[lvl] 1 Drowned");
 			merm.setCustomNameVisible(true);
 		}
 

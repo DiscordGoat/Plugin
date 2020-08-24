@@ -1,0 +1,18 @@
+{
+  "name": "heavysword",
+  "displayName": "§aHeavy Sword",
+  "material": "IRON_SWORD",
+  "unbreakable": true,
+  "hideFlags": 3,
+  "lore": [
+    "§7Damage: §c+100",
+    "§7Strength: §c+125"
+  ],
+  "recipes": [],
+  "enchantments": [
+    {
+      "id": "sharpness",
+      "level": 1
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package me.discordgoat.BM.ScoreBoard;
+package me.discordgoat.bm.scoreboard;
 
 import java.util.*;
 import org.bukkit.*;

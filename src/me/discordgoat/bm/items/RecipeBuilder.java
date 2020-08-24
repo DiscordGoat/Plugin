@@ -1,6 +1,5 @@
-package me.discordgoat.BM.items;
+package me.discordgoat.bm.items;
 
-import me.discordgoat.BM.Main.Main;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.*;

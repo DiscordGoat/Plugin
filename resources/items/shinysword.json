@@ -1,0 +1,23 @@
+{
+  "name": "shinysword",
+  "displayName": "§aShiny Sword",
+  "material": "GOLDEN_SWORD",
+  "unbreakable": false,
+  "hideFlags": 0,
+  "lore": [],
+  "recipes": [],
+  "enchantments": [
+    {
+      "id": "sharpness",
+      "level": 3
+    },
+    {
+      "id": "unbreaking",
+      "level": 3
+    },
+    {
+      "id": "sweeping",
+      "level": 3
+    }
+  ]
+}

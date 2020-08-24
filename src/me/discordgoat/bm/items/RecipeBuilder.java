@@ -1,11 +1,8 @@
-package me.discordgoat.BM.items;
-
-import me.discordgoat.BM.Main.Main;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.*;
+package me.discordgoat.bm.items;
 
 import java.util.*;
+import org.bukkit.*;
+import org.bukkit.inventory.*;
 
 public class RecipeBuilder {
     public boolean shaped;

@@ -1,6 +1,6 @@
 package me.discordgoat.bm.entities;
 
-import me.discordgoat.bm.Main;
+import me.discordgoat.bm.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;

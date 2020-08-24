@@ -1,8 +1,7 @@
 package me.discordgoat.bm.items;
 
 import java.util.*;
-
-import me.discordgoat.bm.Main;
+import me.discordgoat.bm.*;
 import org.bukkit.*;
 import org.bukkit.enchantments.*;
 import org.bukkit.inventory.*;

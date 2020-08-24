@@ -1,8 +1,8 @@
-package me.discordgoat.BM.items;
+package me.discordgoat.bm.items;
 
 import java.util.*;
 
-import me.discordgoat.BM.Main.Main;
+import me.discordgoat.bm.Main;
 import org.bukkit.*;
 import org.bukkit.enchantments.*;
 import org.bukkit.inventory.*;
@@ -18,6 +18,7 @@ public class ItemStackBuilder {
     public List<RecipeBuilder> recipes;
     public List<EnchantmentBuilder> enchantments;
 
+    /* Builds an ItemStack based on the attributes of this class */
     public ItemStack build() {
         Material mat = Material.getMaterial(material);
         if (mat == null)
@@ -29,6 +30,8 @@ public class ItemStackBuilder {
         meta.setDisplayName(displayName);
         meta.setUnbreakable(unbreakable);
 
+        /* Bitwise manipulation of HideFlags, see https://minecraft.gamepedia.com/Tutorials/Command_NBT_tags
+         */
         if ((hideFlags & 1) != 0)
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         if ((hideFlags & 2) != 0)
@@ -50,10 +53,11 @@ public class ItemStackBuilder {
         }
 
         int i = 0;
+        /* Building the ItemStack will also register any recipes associated with it */
         for (RecipeBuilder recipeBuilder : recipes) {
             Recipe recipe = recipeBuilder.build(new NamespacedKey(Main.instance, name + i), item);
             Bukkit.addRecipe(recipe);
-            i++;
+            i++; // Avoid clashing NamespacedKeys
         }
         return item;
     }

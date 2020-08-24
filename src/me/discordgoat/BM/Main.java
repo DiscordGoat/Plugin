@@ -1,16 +1,15 @@
 package me.discordgoat.bm;
 
-import me.discordgoat.bm.events.RightClick;
-import me.discordgoat.bm.items.*;
 import me.discordgoat.bm.entities.*;
+import me.discordgoat.bm.events.*;
+import me.discordgoat.bm.items.*;
+import me.discordgoat.bm.scoreboard.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.*;
 import org.bukkit.plugin.java.*;
-
-import me.discordgoat.bm.scoreboard.ScoreHelper;
 
 public class Main extends JavaPlugin implements Listener {
 	public static Main instance;

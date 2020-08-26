@@ -225,7 +225,7 @@ public class Main extends JavaPlugin implements Listener {
 			demonbird.setCustomName(ChatColor.RED + "[lvl] 1 Bat");
 			demonbird.setCustomNameVisible(true);
 		}
-		if (e.getEntity() instanceof Cat) {
+		if (e.getEntity() instanceof Ocelot) {
 			LivingEntity silvester = e.getEntity();
 			silvester.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 99999, 0));
 			silvester.setCustomName(ChatColor.RED + "[lvl] 1 Cat");

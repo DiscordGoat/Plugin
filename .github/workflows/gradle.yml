@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v2.1.4
       with:
         name: Skyblock-1.0.jar
-        path: build/libs/Skyblock-1.0.jar
+        path: build/libs/SkyBlock-1.0.jar
